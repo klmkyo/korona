@@ -1,5 +1,4 @@
 # Wyniki.diag.pl Scraper
-## Podsumowanie
 Program na podstawie podanych mu danych:
 - tworzy arkusz w Excelu zawierający dane pacjenta wraz z wynikami
 - zapisuje plik PDF z wynikami

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -26,8 +27,10 @@ if sys.argv[1] in ['--help', '-h']:
     print('Użycie: skrypt.py <plik do odczytu danych> <plik do zapisania arkusza>')
     exit(1)
     
+    
 #ten plik miał nie opuszczać mojego komputera więc niestety nie starałem się jakoś pisać czytelnie kod
 #w każdym razie Good Luck w czytaniu mojego bałaganu!
+
 
 def downloadFile(docid, cookies, location):
     """Pobiera wyniki
