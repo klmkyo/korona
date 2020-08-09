@@ -31,6 +31,7 @@ Przykład użycia:
 
 ## Uwagi
 - jeśli skrpyt ma problem z pobraniem pliku należy zwiększyć okno przeglądarki (aby wyjść z widoku mobilnego, który powoduje problemy)
+- jeśli Excel wyświetla dane niepoprawnie, należy utworzyć nowy plik a następnie do niego zaimportować bazę danych CSV
 - jeśli Excel zapyta się z jakim kodowaniem otworzyć plik, należy wybrać UTF-8
 - nie należy przerywać działania skryptu, nawet jeśli nastąpi błąd, może to skutkować niepoprawnym działaniem programu
 - jeśli podczas działania programu wystąpi błąd (np. z powodu utracenia internetu czy problemów ze strony wyników.diag */a zdarzają się często/*) warto spróbować ponownie uruchomić skrypt
