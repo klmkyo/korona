@@ -25,7 +25,7 @@ if sys.argv[1] in ['--help', '-h']:
     exit(1)
     
     
-#ten plik miał nie opuszczać mojego komputera więc niestety nie starałem się jakoś pisać czytelnie kod
+#nie wiedziałem że ten skrypt opuści mój komputer więc niestety też się nie starałem jakoś czytelnie pisać kod
 #w każdym razie Good Luck w czytaniu mojego bałaganu!
 
 
