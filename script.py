@@ -102,11 +102,10 @@ for line, x in enumerate(dane):
         
         swait = WebDriverWait(browser, 5)
         try:
-            if browser.find_element(By.XPATH, '//*[@id="errorSingleOrderClose"]'):
-                raise Exception(str(line) + ': ' + '[Error] Błędne dane w linijce ' + str(line))
+            swait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
         except:
-            pass
-        swait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
+            print(str(line) + ': ' + '[Error] Błędne dane w linijce ' + str(line))
+        
         
         a = browser.get_cookie('.AspNetCore.Antiforgery.ylPDrIszQPI')
         b = browser.get_cookie('.AspNetCore.Session')
@@ -171,6 +170,8 @@ for line, x in enumerate(dane):
                     f.write(data)
                     if os.stat('wyniki/' + wynik + '/' + slugify(name)+'.pdf').st_size > 1024 * 10:
                         processed.append(x[0] + ';' + x[1])
+                    else:
+                        print(str(line) + ': ' + 'Próbowano pobrać, jednak pobrany plik jest podejrzanie małego rozmiaru {} ({}, {})'.format(name, pesel, barcode))
                 
             except:
                 print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
