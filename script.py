@@ -184,7 +184,7 @@ with open('dane.txt', 'r+') as f:
             for person in people:
                 if line.rstrip('\n').split(';')[0] == person['Kod materiału']:
                     name=person['Nazwisko'] + person['Imię']
-            line = "#" + line + "\t" + name
+            line = "#" + line.rstrip('\n') + "\t" + name + '\n'
         lines.append(line)
     
 with open('dane.txt', 'w') as f:
