@@ -19,8 +19,9 @@ import sys
 
 if sys.argv[1] in ['--help', '-h']:
     print('Użycie: skrypt.py <plik do odczytu danych> <plik do zapisania arkusza>')
-#Good Luck w czytaniu mojego napisanego pośpiesznie kodu!
-#może będzie choć trochę czytelny chociaż w to wątpię
+    
+#ten plik miał nie opuszczać mojego komputera więc niestety nie starałem się jakoś pisać czytelnie kod
+#w każdym razie Good Luck w czytaniu mojego bałaganu!
 
 def downloadFile(docid, cookies, location):
     """Pobiera wyniki
@@ -184,6 +185,7 @@ for line, x in enumerate(dane):
                 browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button')
                 docid = browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button').get_attribute('data-docid')
                 
+                #spróbuj pobrać plik, maksymalnie 3 razy
                 for i in range(0,3):
                     if downloadFile(docid, c, 'wyniki/' + wynik + '/' + person['Nazwisko'].capitalize() + ' ' + person['Imię'].capitalize() + ' ' + person['PESEL']+'.pdf'):
                         people.append(person)
@@ -194,6 +196,9 @@ for line, x in enumerate(dane):
                 print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
     except:
         print(str(line) + ': ' + '[Error] Wystąpił nieznany błąd przy {}'.format(x[0]))
+        
+
+#zaznacz ludzi w pliku których plik PDF został już pobrany (aby się nie powtarzać)
 lines = []
 with open(plikDoWczytania, 'r+') as f:
     for line in f.readlines():
@@ -208,9 +213,8 @@ with open(plikDoWczytania, 'r+') as f:
 with open(plikDoWczytania, 'w') as f:
     f.writelines(lines)
 
-with open('export' + str(time.time()) + '.json', 'w') as j:
-    j.write(json.dumps(people, ensure_ascii=False))
 
+#zapisywanie do arkusza
 rows = []
 try:
     with open('plikDoZapisaniaArkusza', 'r') as read: 
@@ -224,6 +228,7 @@ with open('plikDoZapisaniaArkusza', 'a+') as output:
     writer = csv.writer(output)
     for person in people:
         isAlready = False
+        #zabezpieczenie przed duplikatami osób w akruszu
         if rows:
             for x in rows: 
                 if person['Kod materiału'] in x: isAlready = True
