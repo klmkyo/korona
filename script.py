@@ -14,6 +14,7 @@ import requests
 import base64
 import csv
 import json
+import os
 
 # Curve base:
 points = [[0, 0], [0, 2], [2, 3], [4, 0], [6, 3], [8, 2], [8, 0]]
@@ -99,14 +100,13 @@ for line, x in enumerate(dane):
         try: browser.find_element(By.ID, 'solver-button').click()
         except: pass
         
-        wait = WebDriverWait(browser, 10)
+        swait = WebDriverWait(browser, 5)
         try:
             if browser.find_element(By.XPATH, '//*[@id="errorSingleOrderClose"]'):
                 raise Exception(str(line) + ': ' + '[Error] Błędne dane w linijce ' + str(line))
         except:
             pass
-        wait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
-        time.sleep(3)
+        swait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
         
         a = browser.get_cookie('.AspNetCore.Antiforgery.ylPDrIszQPI')
         b = browser.get_cookie('.AspNetCore.Session')
@@ -122,25 +122,22 @@ for line, x in enumerate(dane):
         
         pesel = browser.find_element(By.ID, 'PESEL').text
         person['PESEL'] = pesel
+        
         try:
+            rwait = WebDriverWait(browser, 1.5)
+            rwait.until(lambda browser: browser.find_element(By.XPATH, '/html/body/main/div[3]/section[1]/div[5]/div/div[2]/div[2]/div[2]/div/span').text)
             wynik = browser.find_element(By.XPATH, '/html/body/main/div[3]/section[1]/div[5]/div/div[2]/div[2]/div[2]/div/span').text
             person['Wynik badania'] = wynik
         except:
             person['Wynik badania'] = 'Niedostępny'
             pass
         
-        availible = False
-        
-        try:
-            if browser.find_element(By.XPATH,'/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button/div/span[1]'):
-                availible = True
-        except:
-            pass
-        
-        if not availible:
+        if person['Wynik badania'] == 'Niedostępny':
             print(str(line) + ': ' + '[Alert] Brak wyników dla {} ({}, {})!'.format(name, pesel, barcode))
         else:
             try:
+                dwait = WebDriverWait(browser, 3)
+                dwait.until(lambda browser: browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button'))
                 print(str(line) + ': ' + '[Wynik] ' + name + " - " + wynik)
                 browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button')
                 docid = browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button').get_attribute('data-docid')
@@ -171,9 +168,9 @@ for line, x in enumerate(dane):
                 data = rawresponse.text
                 people.append(person)
                 with open('wyniki/' + wynik + '/' + slugify(name)+'.pdf', 'w') as f:
-                    processed.append(x[0] + ';' + x[1])
                     f.write(data)
-                    
+                    if os.stat('wyniki/' + wynik + '/' + slugify(name)+'.pdf').st_size > 1024 * 10:
+                        processed.append(x[0] + ';' + x[1])
                 
             except:
                 print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
