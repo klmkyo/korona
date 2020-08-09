@@ -88,7 +88,6 @@ for line, x in enumerate(dane):
         
         if insert == 20:
             month = str(int(month) - 20).zfill(2)
-        print(month)
 
         bdate = day+month+str(insert)+year
         
