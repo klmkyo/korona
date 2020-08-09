@@ -171,7 +171,7 @@ for line, x in enumerate(dane):
                     if os.stat('wyniki/' + wynik + '/' + slugify(name)+'.pdf').st_size > 1024 * 10:
                         processed.append(x[0] + ';' + x[1])
                     else:
-                        print(str(line) + ': ' + 'Próbowano pobrać, jednak pobrany plik jest podejrzanie małego rozmiaru {} ({}, {})'.format(name, pesel, barcode))
+                        print(str(line) + ': ' + '[Error] Próbowano pobrać, jednak pobrany plik jest podejrzanie małego rozmiaru {} ({}, {})'.format(name, pesel, barcode))
                 
             except:
                 print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
