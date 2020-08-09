@@ -102,7 +102,7 @@ for line, x in enumerate(dane):
         wait = WebDriverWait(browser, 10)
         try:
             if browser.find_element(By.XPATH, '//*[@id="errorSingleOrderClose"]'):
-                raise Exception('[Error] Błędne dane w linijce ' + str(line))
+                raise Exception(str(line) + ': ' + '[Error] Błędne dane w linijce ' + str(line))
         except:
             pass
         wait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
@@ -138,10 +138,10 @@ for line, x in enumerate(dane):
             pass
         
         if not availible:
-            print('[Alert] Brak wyników dla {} ({}, {})!'.format(name, pesel, barcode))
+            print(str(line) + ': ' + '[Alert] Brak wyników dla {} ({}, {})!'.format(name, pesel, barcode))
         else:
             try:
-                print('[Wynik] ' + name + " - " + wynik)
+                print(str(line) + ': ' + '[Wynik] ' + name + " - " + wynik)
                 browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button')
                 docid = browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button').get_attribute('data-docid')
                 
@@ -176,14 +176,18 @@ for line, x in enumerate(dane):
                     
                 
             except:
-                print('[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
+                print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
     except:
-        print('[Error] Wystąpił nieznany błąd przy {}'.format(x[0]))
+        print(str(line) + ': ' + '[Error] Wystąpił nieznany błąd przy {}'.format(x[0]))
 lines = []
 with open('dane.txt', 'r+') as f:
     for line in f.readlines():
         if line.rstrip('\n') in processed:
-            line = "#" + line
+            name = ''
+            for person in people:
+                if line.rstrip('\n').split(';')[0] == person['Kod materiału']:
+                    name=person['Nazwisko'] + person['Imię']
+            line = "#" + line + "\t" + name
         lines.append(line)
     
 with open('dane.txt', 'w') as f:
