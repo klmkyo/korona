@@ -26,7 +26,7 @@ Skrypt przyjmuje 2 argumenty; **\<plik txt do odczytania\>** oraz **\<plik csv d
 
 Przykład użycia:
 ```
-    python skrypt.py dane.txt tabela.csv
+    python script.py dane.txt tabela.csv
 ```
 
 ## Uwagi
