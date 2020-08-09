@@ -1,5 +1,5 @@
 #poniższe dane są oczywiście wymyślone i niestety nie będą działać, należy je zastąpić właściwymi danymi
-#kod kreskowy ; pierwsze 6 cyfr peselu
+#<kod kreskowy>;<pierwsze 6 cyfr peselu>
 8243459224;850509
 9541459224;811126
 
