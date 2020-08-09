@@ -133,6 +133,7 @@ for line, x in enumerate(dane):
         
         if person['Wynik badania'] == 'Niedostępny':
             print(str(line) + ': ' + '[Alert] Brak wyników dla {} ({}, {})!'.format(name, pesel, barcode))
+            continue
         else:
             try:
                 dwait = WebDriverWait(browser, 3)
