@@ -18,8 +18,13 @@ import json
 import os
 import sys
 
+if len(sys.argv) == 1:
+    print('Użycie: skrypt.py <plik do odczytu danych> <plik do zapisania arkusza>')
+    exit(1)
+
 if sys.argv[1] in ['--help', '-h']:
     print('Użycie: skrypt.py <plik do odczytu danych> <plik do zapisania arkusza>')
+    exit(1)
     
 #ten plik miał nie opuszczać mojego komputera więc niestety nie starałem się jakoś pisać czytelnie kod
 #w każdym razie Good Luck w czytaniu mojego bałaganu!
@@ -61,7 +66,7 @@ def downloadFile(docid, cookies, location):
     return(success)
 
 
-#zainicjuj selenium, osobiście testowałem na firefoxie ale w chromie też powinno działać bez zarzutu
+#zainicjuj selenium, Firefox działa w tym programie o wiele lepiej niż chrome więc z niego korzystam
 browser = webdriver.Firefox()
 
 plikDoWczytania = sys.argv[1]
@@ -69,9 +74,10 @@ plikDoZapisaniaArkusza = sys.argv[2]
 
 #stwórz foldery (jeśli jeszcze nie istnieją) do których będą pobierane wyniki
 try:
-    os.mkdirs('wyniki/Pozytywny')
-    os.mkdirs('wyniki/Negatywny')
-    os.mkdirs('wyniki/Nierozstrzygający')
+    os.mkdir('wyniki')
+    os.mkdir('wyniki/Pozytywny')
+    os.mkdir('wyniki/Negatywny')
+    os.mkdir('wyniki/Nierozstrzygający')
 except:
     pass
 
@@ -84,10 +90,11 @@ dane = []
 
 #podziel odczytane linijki na kod i 6 cyfr PESEL'U
 for line in raw:
-    if not line.startswith('#'):
-        x = line.split(';')
-        x[1] = x[1].rstrip('\n')
-        dane.append(x)
+    if len(line) > 1:
+        if not line.startswith('#'):
+            x = line.split(';')
+            x[1] = x[1].rstrip('\n')
+            dane.append(x)
 
 #wyświetl wczytane dane
 pprint(dane)

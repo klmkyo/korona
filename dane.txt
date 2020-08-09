@@ -1,6 +1,5 @@
 #poniższe dane są oczywiście wymyślone i niestety nie będą działać, należy je zastąpić właściwymi danymi
 #kod kreskowy ; pierwsze 6 cyfr peselu
-6505459221;940408
-7599459229;810127
-7296459226;791009
-7693459224;810804
+8243459224;850509
+9541459224;811126
+
