@@ -104,7 +104,7 @@ for line, x in enumerate(dane):
         try:
             swait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
         except:
-            print(str(line) + ': ' + '[Error] Błędne dane w linijce ' + str(line))
+            print(str(line) + ': ' + '[Error] Błędne dane ' + barcode + ' ' + x[1])
         
         
         a = browser.get_cookie('.AspNetCore.Antiforgery.ylPDrIszQPI')
