@@ -14,7 +14,7 @@ Program na podstawie podanych mu danych:
 ```
     pip install -r requirements.txt
 ```
-- Instalacja Webdriver'a dla Firefoxa (niezbędny do interfejsowania z przeglądarką) (z Chromem występowały problemy):
+- Instalacja Webdriver'a dla Firefoxa (niezbędny do interfejsowania z przeglądarką, z Chromem występowały problemy), rozpakowany plik należy skopiować do folderu ze skryptem:
 ```
     https://github.com/mozilla/geckodriver/releases
 ```
