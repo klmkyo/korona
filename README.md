@@ -33,8 +33,8 @@ Przykład użycia:
 ## Uwagi
 - jeśli skrpyt ma problem z pobraniem pliku należy zwiększyć okno przeglądarki (aby wyjść z widoku mobilnego, który powoduje problemy)
 - jeśli Excel zapyta się z jakim kodowaniem otworzyć plik, należy wybrać UTF-8
-- jeśli podczas działania programu wystąpi błąd (np. z powodu utracenia internetu czy problemów ze strony wyników.diag */a zdarzają się często/*) warto spróbować ponownie uruchomić skrypt
 - nie należy przerywać działania skryptu, nawet jeśli nastąpi błąd, może to skutkować niepoprawnym działaniem programu
+- jeśli podczas działania programu wystąpi błąd (np. z powodu utracenia internetu czy problemów ze strony wyników.diag */a zdarzają się często/*) warto spróbować ponownie uruchomić skrypt
 
 ## Kontakt
 W przypadku problemu z działaniem programu (co jest całkiem prawdopodobne) lub pytań zapraszam do pisania na **mklimek03@gmail.com**, z chęcią udzielę pomocy.
