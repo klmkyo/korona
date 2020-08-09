@@ -84,7 +84,7 @@ except:
 
 
 #odczytaj kod oraz 6 pierwsze cyfr PESEL'U wymagane do zalogowania na wyniki.diag
-with open(plikDoWczytania, 'r') as f:
+with open(plikDoWczytania, 'r', encoding='UTF-8') as f:
     raw = f.readlines()
 dane = []
 
@@ -209,7 +209,7 @@ for line, x in enumerate(dane):
 
 #zaznacz ludzi w pliku których plik PDF został już pobrany (aby się nie powtarzać)
 lines = []
-with open(plikDoWczytania, 'r+') as f:
+with open(plikDoWczytania, 'r+', encoding='UTF-8') as f:
     for line in f.readlines():
         if line.rstrip('\n') in processed:
             name = ''
@@ -219,21 +219,21 @@ with open(plikDoWczytania, 'r+') as f:
             line = "#" + line.rstrip('\n') + "\t" + name + '\n'
         lines.append(line)
     
-with open(plikDoWczytania, 'w') as f:
+with open(plikDoWczytania, 'w', encoding='UTF-8') as f:
     f.writelines(lines)
 
 
 #zapisywanie do arkusza
 rows = []
 try:
-    with open(plikDoZapisaniaArkusza, 'r') as read: 
+    with open(plikDoZapisaniaArkusza, 'r', newline='\n', encoding='UTF-8') as read: 
         reader = csv.reader(read)
         for row in reader:
             rows.append(row)
 except:
     pass
     
-with open(plikDoZapisaniaArkusza, 'a+') as output:
+with open(plikDoZapisaniaArkusza, 'a+', newline='\n', encoding='UTF-8') as output:
     writer = csv.writer(output)
     for person in people:
         isAlready = False
@@ -246,3 +246,4 @@ with open(plikDoZapisaniaArkusza, 'a+') as output:
             for key, value in person.items():
                 v.append(value)
             writer.writerows([v])
+browser.quit()
