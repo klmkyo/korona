@@ -194,11 +194,21 @@ with open('dane.txt', 'w') as f:
 
 with open('export' + str(time.time()) + '.json', 'w') as j:
     j.write(json.dumps(people, ensure_ascii=False))
+
+rows = []
+with open('output.csv', 'r') as read: 
+    reader = csv.reader(read)
+    for row in reader:
+        rows.append(row)
     
-with open('output.csv', 'a') as output:
+with open('output.csv', 'a+') as output:
     writer = csv.writer(output)
     for person in people:
-        v = []
-        for key, value in person.items():
-            v.append(value)
-        writer.writerows([v])
+        isAlready = False
+        for x in rows: 
+            if person['barcode'] in x: isAlready = True
+        if not isAlready:
+            v = []
+            for key, value in person.items():
+                v.append(value)
+            writer.writerows([v])
