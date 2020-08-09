@@ -14,7 +14,7 @@ Program na podstawie podanych mu danych:
     pip install -r requirements.txt
 ```
 ## Użytkowanie
-Skrypt przyjmuje 2 argumenty; <plik txt do odczytania> oraz <plik csv do zapisania>:
+Skrypt przyjmuje 2 argumenty; '<'plik txt do odczytania> oraz '<'plik csv do zapisania>:
 - plik do odczytania: zawiera on kod kreskowy oraz pierwsze 6 cyfer PESEL'u niezbędne do zalogowania się na wyniki.diag.pl. Przykład formatowania widać w pliku ```dane.txt```
 - plik do zapisania: program zapisze do niego arkusz, do którego będą dopisywani nowo sprawdzeni ludzie
 
