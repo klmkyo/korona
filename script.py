@@ -190,7 +190,7 @@ with open('output.csv', 'a+') as output:
         isAlready = False
         if rows:
             for x in rows: 
-                if person['barcode'] in x: isAlready = True
+                if person['Kod materiału'] in x: isAlready = True
         if not isAlready:
             v = []
             for key, value in person.items():
