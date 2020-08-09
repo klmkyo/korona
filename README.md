@@ -10,7 +10,7 @@ Program na podstawie podanych mu danych:
 ```
     git clone https://github.com/klmkyo/korona
 ```
-- Instalacja zależności
+- Instalacja zależności (na Windowsie może być konieczne instalowanie z poziomu Administratora)
 ```
     pip install -r requirements.txt
 ```
