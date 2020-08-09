@@ -153,7 +153,7 @@ for line, x in enumerate(dane):
         try:
             swait.until(lambda browser: browser.find_element(By.ID, 'PESEL').text)
         except:
-            print(str(line) + ': ' + '[Error] Błędne dane ' + barcode + ' ' + x[1])
+            print(str(line) + ': ' + '[Error] Błędne dane (kod: ' + barcode + ', PESEL: ' + x[1] + ')')
         
         #zdobądź pliki cookie niezbędne do pobrania pliku
         cookies = browser.get_cookies()
@@ -183,7 +183,7 @@ for line, x in enumerate(dane):
         
         #pobierz plik jeśli są wyniki badań
         if person['Wynik badania'] == 'Niedostępny':
-            print(str(line) + ': ' + '[Alert] Brak wyników dla {} ({}, {})!'.format(name, pesel, barcode))
+            print(str(line) + ': ' + '[Alert] Brak wyników dla {} (kod: {}, PESEL: {}!'.format(name, barcode, pesel))
             continue
         else:
             try:
@@ -201,9 +201,9 @@ for line, x in enumerate(dane):
                         break
                 
             except:
-                print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} ({}, {}) nie powiodło się!'.format(name, pesel, barcode))
+                print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} (kod: {}, PESEL: {}) nie powiodło się!'.format(name, barcode, pesel))
     except:
-        print(str(line) + ': ' + '[Error] Wystąpił nieznany błąd przy {}'.format(x[0]))
+        print(str(line) + ': ' + '[Error] Wystąpił nieznany błąd przy kodzie {}'.format(x[0]))
         
 
 #zaznacz ludzi w pliku których plik PDF został już pobrany (aby się nie powtarzać)
