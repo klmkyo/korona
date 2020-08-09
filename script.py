@@ -54,6 +54,14 @@ def downloadFile(docid, cookies, location):
 browser = webdriver.Firefox()
 browser.install_addon("/home/klmkyo/korona/buster_captcha_solver_for_humans-1.0.1-an+fx.xpi")
 
+try:
+    os.mkdir('wyniki')
+    os.mkdir('wyniki/Pozytywny')
+    os.mkdir('wyniki/Negatywny')
+    os.mkdir('wyniki/Nierozstrzygający')
+except:
+    pass
+
 with open('dane.txt', 'r') as f:
     raw = f.readlines()
 dane = []
@@ -152,7 +160,7 @@ for line, x in enumerate(dane):
                 docid = browser.find_element(By.XPATH, '/html/body/main/div[3]/section[2]/div[3]/div/div[2]/div/div[3]/button').get_attribute('data-docid')
                 
                 for i in range(0,3):
-                    if downloadFile(docid, c, 'wyniki/' + wynik + '/' + slugify(name)+'.pdf'):
+                    if downloadFile(docid, c, 'wyniki/' + wynik + '/' + slugify(person['Nazwisko'] + '' + person['Imię'] + ' ' + person['PESEL'])+'.pdf'):
                         people.append(person)
                         processed.append(x[0] + ';' + x[1])
                         break
