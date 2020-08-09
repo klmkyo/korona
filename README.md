@@ -1,0 +1,2 @@
+#wyniki.diag scraper
+##instalacja
