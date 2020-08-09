@@ -55,7 +55,7 @@ def downloadFile(docid, cookies, location):
     data = rawresponse.text
     
     #zapisz pobrany plik PDF
-    with open(location, 'w') as f:
+    with open(location, 'w', encoding='UTF-8') as f:
         f.write(data)
         #czasami pobrany plik waży 0b (jest pusty)
         #aby temu zapobiec poniżej znajduję się check czy plik jest większy od 100kB (ponieważ typowy plik pdf z tej strony waży ~230kB)
@@ -201,6 +201,7 @@ for line, x in enumerate(dane):
                         break
                 
             except:
+                print("Unexpected error:", sys.exc_info()[1])
                 print(str(line) + ': ' + '[Error] Pobieranie wyników dla {} (kod: {}, PESEL: {}) nie powiodło się!'.format(name, barcode, pesel))
     except:
         print(str(line) + ': ' + '[Error] Wystąpił nieznany błąd przy kodzie {}'.format(x[0]))
