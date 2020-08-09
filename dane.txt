@@ -1,0 +1,6 @@
+#poniższe dane są oczywiście wymyślone i nie będą działać
+#kod kreskowy ; pierwsze 6 cyfr peselu
+6505459221;940408
+7599459229;810127
+7296459226;791009
+7693459224;810804
