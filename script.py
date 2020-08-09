@@ -225,14 +225,14 @@ with open(plikDoWczytania, 'w') as f:
 #zapisywanie do arkusza
 rows = []
 try:
-    with open('plikDoZapisaniaArkusza', 'r') as read: 
+    with open(plikDoZapisaniaArkusza, 'r') as read: 
         reader = csv.reader(read)
         for row in reader:
             rows.append(row)
 except:
     pass
     
-with open('plikDoZapisaniaArkusza', 'a+') as output:
+with open(plikDoZapisaniaArkusza, 'a+') as output:
     writer = csv.writer(output)
     for person in people:
         isAlready = False
