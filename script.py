@@ -169,7 +169,7 @@ for line, x in enumerate(dane):
         person['Nazwisko'] = nazwisko
         
         pesel = browser.find_element(By.ID, 'PESEL').text
-        person['PESEL'] = pesel
+        person['PESEL'] = pesel.zfill(11)
         
         #sprawdź czy wynik badań jest dostępny
         try:
