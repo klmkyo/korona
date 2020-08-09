@@ -6,12 +6,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-import numpy as np
-import scipy.interpolate as si
 from pprint import pprint
 import urllib.request
 import time
-from slugify import slugify
 import requests
 import base64
 import csv
