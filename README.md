@@ -26,3 +26,6 @@ Przykład użycia:
 ## Uwagi
 - jeśli Excel zapyta się z jakim kodowaniem otworzyć plik, należy wybrać UTF-8
 - jeśli podczas działania programu wystąpi błąd (np. z powodu podania błędnych danych, utracenia internetu czy zwyczajnie problemów ze strony wyników.diag /a zdarzają się często/) warto spróbować ponownie uruchomić skrypt
+
+## Kontakt
+W przypadku problemu z działaniem programu (co jest całkiem prawdopodobne) lub pytańzapraszam do pisania na mklimek03@gmail.com, postaram się jak najszybciej odpisać.
